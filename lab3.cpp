@@ -17,12 +17,12 @@ class PointToCheck
 public:
     float x, y;
 
-    bool isInSircle(int circleX, int circleY)
+    bool isInSircle(float circleX, float circleY)
     {
         return (pow((x - circleX), 2) + pow((y - circleY), 2) <= 1);
     }
 
-    bool isInSquare(int squareLeftX, int squareDownY, int squareRightX, int squareUpY)
+    bool isInSquare(float squareLeftX, float squareDownY, float squareRightX, float squareUpY)
     {
         return (x > squareLeftX && x < squareRightX && y > squareDownY && y < squareUpY);
     }
