@@ -17,6 +17,7 @@ int main()
     {
         printf("Enter A, B and n parameters: ");
         scanf("%lf %lf %i", &A, &B, &n);
+        printf("%f %f %i", A, B, n);
 
         double S_for = CalculateViaFor();
         double S_While = CalculateViaWhile();

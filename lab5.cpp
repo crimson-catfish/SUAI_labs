@@ -1,8 +1,5 @@
 #include <cmath>
 #include <stdio.h>
-#include <iostream>
-#include <vector>
-using namespace std;
 
 double precision;
 
@@ -13,25 +10,31 @@ double Calculate(double Y0, double Y2, int n);
 
 int main()
 {
-    char quitOrRestart;
     double Y0, Y1, Y2;
+    char quitOrRestart;
 
     do
     {
         printf("Enter Y0, Y1, Y2 and calculation precision: ");
-        scanf("%lf %lf %lf, %lf", &Y0, &Y1, &Y2, &precision);
+        scanf("%lf %lf %lf %lf", &Y0, &Y1, &Y2, &precision);
+        if (precision == 0)
+        {
+            printf("too precise!");
+            continue;
+        }
 
         double limFor = CalculateViaFor(Y0, Y1, Y2);
-        double limWhile = CalculateViaWhile(Y0, Y1, Y2);
-        double limDoWhile = CalculateViaDoWhile(Y0, Y1, Y2);
+        printf("Calculated via FOR: %lf\n", limFor);
 
-        printf("Calculated via FOR: %f\n", limFor);
-        printf("Calculated via WHILE: %f\n", limWhile);
-        printf("Calculated via DO-WHILE: %f\n", limDoWhile);
+        double limWhile = CalculateViaWhile(Y0, Y1, Y2);
+        printf("Calculated via WHILE: %lf\n", limWhile);
+
+        double limDoWhile = CalculateViaDoWhile(Y0, Y1, Y2);
+        printf("Calculated via DO-WHILE: %lf\n", limDoWhile);
 
         printf("\n\nEnter \"R\" to run again, or enter any other letter to quit programm: ");
 
-        scanf(" %c", &quitOrRestart);
+        scanf("  %c", &quitOrRestart);
     } while (quitOrRestart == 'r' || quitOrRestart == 'R');
 
     return 0;
@@ -40,7 +43,7 @@ int main()
 double CalculateViaFor(double Y0, double Y1, double Y2)
 {
     double y = Calculate(Y0, Y2, 3);
-    for (int n = 3; fabs(y - Y2) <= precision; n++)
+    for (int n = 3; fabs(y - Y2) > precision; n++)
     {
         Y0 = Y1;
         Y1 = Y2;
@@ -56,7 +59,7 @@ double CalculateViaWhile(double Y0, double Y1, double Y2)
     double y = Calculate(Y0, Y2, 3);
 
     int n = 3;
-    while (fabs(y - Y2) <= precision)
+    while (fabs(y - Y2) > precision)
     {
         Y0 = Y1;
         Y1 = Y2;
@@ -80,7 +83,7 @@ double CalculateViaDoWhile(double Y0, double Y1, double Y2)
         Y1 = Y2;
         Y2 = y;
         n++;
-    } while (fabs(y - Y1) <= precision);
+    } while (fabs(y - Y1) > precision);
 
     return y;
 }
