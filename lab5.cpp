@@ -1,11 +1,13 @@
 #include <cmath>
 #include <stdio.h>
+#include <tuple>
+using namespace std;
 
 double precision;
 
-double CalculateViaFor(double Y0, double Y1, double Y2);
-double CalculateViaWhile(double Y0, double Y1, double Y2);
-double CalculateViaDoWhile(double Y0, double Y1, double Y2);
+tuple<double, int> CalculateViaFor(double Y0, double Y1, double Y2);
+tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2);
+tuple<double, int> CalculateViaDoWhile(double Y0, double Y1, double Y2);
 double Calculate(double Y0, double Y2, int n);
 
 int main()
@@ -23,14 +25,14 @@ int main()
             continue;
         }
 
-        double limFor = CalculateViaFor(Y0, Y1, Y2);
-        printf("Calculated via FOR:      %lf\n", limFor);
+        tuple<double, int> limFor = CalculateViaFor(Y0, Y1, Y2);
+        printf("Calculated via FOR:      %lf   n: %i\n", get<0>(limFor), get<1>(limFor));
 
-        double limWhile = CalculateViaWhile(Y0, Y1, Y2);
-        printf("Calculated via WHILE:    %lf\n", limWhile);
+        tuple<double, int> limWhile = CalculateViaWhile(Y0, Y1, Y2);
+        printf("Calculated via WHILE:    %lf   n: %i\n", get<0>(limWhile), get<1>(limWhile));
 
-        double limDoWhile = CalculateViaDoWhile(Y0, Y1, Y2);
-        printf("Calculated via DO-WHILE: %lf\n", limDoWhile);
+        tuple<double, int> limDoWhile = CalculateViaDoWhile(Y0, Y1, Y2);
+        printf("Calculated via DO-WHILE: %lf   n: %i\n", get<0>(limDoWhile), get<1>(limDoWhile));
 
         printf("\n\nEnter \"R\" to run again, or enter any other letter to quit programm: ");
 
@@ -40,10 +42,11 @@ int main()
     return 0;
 }
 
-double CalculateViaFor(double Y0, double Y1, double Y2)
+tuple<double, int> CalculateViaFor(double Y0, double Y1, double Y2)
 {
     double y = Calculate(Y0, Y2, 3);
-    for (int n = 3; fabs(y - Y2) > precision; n++)
+    int n = 3;
+    for (n; fabs(y - Y2) > precision; n++)
     {
         Y0 = Y1;
         Y1 = Y2;
@@ -51,10 +54,10 @@ double CalculateViaFor(double Y0, double Y1, double Y2)
         y = Calculate(Y0, Y2, n);
     }
 
-    return y;
+    return {y, n};
 }
 
-double CalculateViaWhile(double Y0, double Y1, double Y2)
+tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2)
 {
     double y = Calculate(Y0, Y2, 3);
 
@@ -68,10 +71,10 @@ double CalculateViaWhile(double Y0, double Y1, double Y2)
         n++;
     }
 
-    return y;
+    return {y, n};
 }
 
-double CalculateViaDoWhile(double Y0, double Y1, double Y2)
+tuple<double, int> CalculateViaDoWhile(double Y0, double Y1, double Y2)
 {
     double y;
 
@@ -85,7 +88,7 @@ double CalculateViaDoWhile(double Y0, double Y1, double Y2)
         n++;
     } while (fabs(y - Y1) > precision);
 
-    return y;
+    return {y, n};
 }
 
 double Calculate(double Y0, double Y2, int n)
