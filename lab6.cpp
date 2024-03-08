@@ -3,11 +3,11 @@
 #include <iostream>
 #include <tuple>
 using namespace std;
-// colsole table lib
+
+// ========== colsole table header =============
 #ifndef CONSOLE_TABLE_H
 #define CONSOLE_TABLE_H
 
-#include <iostream>
 #include <vector>
 #include <iterator>
 #include <iomanip>
@@ -48,6 +48,7 @@ private:
     std::vector<std::vector<std::string>> _rows;
 };
 #endif
+// ========== end of colsole table header =============
 
 double precision;
 
@@ -131,6 +132,7 @@ tuple<double, int> CalculateSum(double x)
     return {sum + x, n}; // add first term back
 }
 
+// ========== colsole table lib =============
 ConsoleTable::ConsoleTable(unsigned int numberOfColumns) : _numberOfColumns(numberOfColumns)
 {
 }
@@ -233,3 +235,4 @@ std::vector<int> ConsoleTable::GetColumnsMaxWidth() const
     }
     return columnsWidth;
 }
+// ========== end colsole table lib =============
