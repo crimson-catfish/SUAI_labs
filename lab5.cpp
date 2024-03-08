@@ -24,10 +24,10 @@ int main()
         }
 
         double limFor = CalculateViaFor(Y0, Y1, Y2);
-        printf("Calculated via FOR: %lf\n", limFor);
+        printf("Calculated via FOR:      %lf\n", limFor);
 
         double limWhile = CalculateViaWhile(Y0, Y1, Y2);
-        printf("Calculated via WHILE: %lf\n", limWhile);
+        printf("Calculated via WHILE:    %lf\n", limWhile);
 
         double limDoWhile = CalculateViaDoWhile(Y0, Y1, Y2);
         printf("Calculated via DO-WHILE: %lf\n", limDoWhile);
