@@ -53,35 +53,36 @@ private:
 double precision;
 
 tuple<double, int> CalculateSum(double x);
+int factorial(int num);
 
 int main()
 {
     float start, end, step;
-    char quitOrRestart;
+    char quitOrRestart = 'r';
 
     do
     {
-        cout << "Enter argument start (0 < start < 1): ";
+        cout << "\nEnter argument start: ";
         cin >> start;
-        if (start >= 1 || start <= 0)
-        {
-            cout << "Invalid input! Please enter a number between 0 and 1";
-            continue;
-        }
 
-        cout << "Enter argument end (start <= end < 1): ";
+        cout << "Enter argument end: ";
         cin >> end;
-        if (end >= 1 || start > end)
+
+        cout << "Enter argument step (step != 0): ";
+        cin >> step;
+        if (step == 0)
         {
-            cout << "Invalid input! Please enter a number between start and 1";
+            cout << "Invalid input! step shouldn't be equal to 0";
             continue;
         }
-
-        cout << "Enter argument step (step > 0): ";
-        cin >> step;
-        if (step <= 0)
+        if (step > 0 && end < start)
         {
-            cout << "Invalid input! Please enter a number greater than 0";
+            cout << "Invalid input! step should be greater than 0 if end > start";
+            continue;
+        }
+        if (step < 0 && end > start)
+        {
+            cout << "Invalid input! step should be less than 0 if end < start";
             continue;
         }
 
@@ -90,6 +91,11 @@ int main()
         if (0 >= precision || precision > 0.1)
         {
             cout << "Invalid input! Please enter a number between than 0";
+            continue;
+        }
+        if (max(fabs(start), fabs(end)) / precision > 1000)
+        {
+            cout << "too precise for given start-end. variables would overflow";
             continue;
         }
 
@@ -116,20 +122,30 @@ int main()
 tuple<double, int> CalculateSum(double x)
 {
     double sum = 0;
-    double oldSum;
+    double currentTerm = x;
     double oddPoweredX = x;
-    int oddFactorial = 1;
-    int n = 3; // start from the third power of X to avoid calculating factorial of 1
-    do
+    int n = 1;
+    while (fabs(currentTerm) > precision)
     {
-        oldSum = sum;
-        oddFactorial *= n * (n - 1);
-        oddPoweredX *= x * x;
-        sum += (double)oddPoweredX / (double)oddFactorial;
+        currentTerm = (double)oddPoweredX / (double)factorial(n);
+        printf("%i, %lf, %lf\n", n, currentTerm, oddPoweredX);
+        sum += currentTerm;
         n += 2;
-    } while (fabs(sum - oldSum) > precision);
-
-    return {sum + x, n}; // add first term back
+        oddPoweredX *= x * x;
+        if (isinf(oddPoweredX))
+        {
+            cout << "overflow";
+            break;
+        }
+    }
+    cout << endl;
+    return {sum, n};
+}
+int factorial(int num)
+{
+    if (num <= 1)
+        return 1;
+    return (num * factorial(num - 1));
 }
 
 // ========== colsole table lib =============
