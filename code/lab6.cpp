@@ -93,23 +93,38 @@ int main()
             cout << "Invalid input! Please enter a number between than 0";
             continue;
         }
-        if (max(fabs(start), fabs(end)) / precision > 1000)
+        if (max(fabs(start), fabs(end)) / precision > 4000)
         {
-            cout << "too precise for given start-end. variables would overflow";
+            cout << "too precise for given start-end. variables could overflow";
             continue;
         }
 
         ConsoleTable table(4);
         table.AddNewRow({"argument", "sum", "terms count", "reference value"});
-        for (double x = start; x <= end; x += step)
+        if (step > 0)
         {
-            tuple<double, int> result = CalculateSum(x);
-            table.AddNewRow({to_string(x),
-                             to_string(get<0>(result)),
-                             to_string(get<1>(result)),
-                             to_string(sinh(x))});
-        }
 
+            for (double x = start; x <= end; x += step)
+            {
+                tuple<double, int> result = CalculateSum(x);
+                table.AddNewRow({to_string(x),
+                                 to_string(get<0>(result)),
+                                 to_string(get<1>(result)),
+                                 to_string(sinh(x))});
+            }
+        }
+        else
+        {
+
+            for (double x = start; x >= end; x += step)
+            {
+                tuple<double, int> result = CalculateSum(x);
+                table.AddNewRow({to_string(x),
+                                 to_string(get<0>(result)),
+                                 to_string(get<1>(result)),
+                                 to_string(sinh(x))});
+            }
+        }
         cout << "\n";
         table.WriteTable(Align::Center);
 
@@ -128,7 +143,6 @@ tuple<double, int> CalculateSum(double x)
     while (fabs(currentTerm) > precision)
     {
         currentTerm = (double)oddPoweredX / (double)factorial(n);
-        printf("%i, %lf, %lf\n", n, currentTerm, oddPoweredX);
         sum += currentTerm;
         n += 2;
         oddPoweredX *= x * x;
@@ -138,7 +152,6 @@ tuple<double, int> CalculateSum(double x)
             break;
         }
     }
-    cout << endl;
     return {sum, n};
 }
 int factorial(int num)
