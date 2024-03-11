@@ -53,7 +53,6 @@ private:
 double precision;
 
 tuple<double, int> CalculateSum(double x);
-int factorial(int num);
 
 int main()
 {
@@ -138,27 +137,20 @@ tuple<double, int> CalculateSum(double x)
 {
     double sum = 0;
     double currentTerm = x;
-    double oddPoweredX = x;
     int n = 1;
     while (fabs(currentTerm) > precision)
     {
-        currentTerm = (double)oddPoweredX / (double)factorial(n);
         sum += currentTerm;
+
         n += 2;
-        oddPoweredX *= x * x;
-        if (isinf(oddPoweredX))
+        currentTerm *= x * x / (n * (n - 1));
+        if (isinf(currentTerm))
         {
-            cout << "overflow";
+            cout << "overflow\n";
             break;
         }
     }
     return {sum, n};
-}
-int factorial(int num)
-{
-    if (num <= 1)
-        return 1;
-    return (num * factorial(num - 1));
 }
 
 // ========== colsole table lib =============
