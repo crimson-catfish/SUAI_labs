@@ -54,7 +54,6 @@ tuple<double, int> CalculateViaFor(double Y0, double Y1, double Y2)
         Y2 = y;
         y = Calculate(Y0, Y2, i);
     }
-    printf("%i\n", n);
 
     return {y, n};
 }
@@ -77,7 +76,7 @@ tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2)
 
 tuple<double, int> CalculateViaDoWhile(double Y0, double Y1, double Y2)
 {
-    int n = 3;
+    int n = 2;
     double y;
     do
     {
