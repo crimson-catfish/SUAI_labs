@@ -44,7 +44,7 @@ int main()
 
 tuple<double, int> CalculateViaFor(double Y0, double Y1, double Y2)
 {
-    int n;
+    int n = 3;
     double y = Calculate(Y0, Y2, 3);
     for (int i = 4; fabs(y - Y2) > precision; i++)
     {
