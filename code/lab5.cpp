@@ -44,17 +44,18 @@ int main()
 
 tuple<double, int> CalculateViaFor(double Y0, double Y1, double Y2)
 {
-    int n = 2;
+    int n = 3;
     double y = Calculate(Y0, Y2, n);
-    for (; fabs(y - Y2) > precision; n++)
+    for (; fabs(y - Y2) > precision;)
     {
         Y0 = Y1;
         Y1 = Y2;
         Y2 = y;
+        n++;
         y = Calculate(Y0, Y2, n);
     }
 
-    return {y, n - 1};
+    return {y, n};
 }
 
 tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2)
@@ -63,10 +64,10 @@ tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2)
     double y = Calculate(Y0, Y2, n);
     while (fabs(y - Y2) > precision)
     {
-        n++;
         Y0 = Y1;
         Y1 = Y2;
         Y2 = y;
+        n++;
         y = Calculate(Y0, Y2, n);
     }
 
@@ -75,7 +76,7 @@ tuple<double, int> CalculateViaWhile(double Y0, double Y1, double Y2)
 
 tuple<double, int> CalculateViaDoWhile(double Y1, double Y2, double y)
 {
-    int n = 2;
+    int n = 3;
     double Y0;
     do
     {
