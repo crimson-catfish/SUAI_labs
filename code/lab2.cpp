@@ -13,6 +13,7 @@ int min_bypass(int a, int b) { int min = a; return (b < min)? b : min; }
 int x;
 
 int main()
+
 {
     int a, b, c, d;
     printf("\nEnter numbers to compare a, b, c, d: ");
