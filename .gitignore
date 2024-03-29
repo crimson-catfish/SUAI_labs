@@ -1,7 +1,7 @@
 # Ignore list for Eagle, a PCB layout tool
 .vscode
 build/Debug
-
+lab?
 *.exe
 
 # Backup files
