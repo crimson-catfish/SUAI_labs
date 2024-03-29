@@ -16,13 +16,14 @@ class Quad
 
         bool are_opposite_sides_equal()
         {
-            return pow(vrts[1].x - vrts[3].x, 2) + pow(vrts[1].y - vrts[3].y, 2) == pow(vrts[2].x - vrts[0].x, 2) + pow(vrts[2].y - vrts[0].y, 2);
+            return (pow(vrts[0].x - vrts[1].x, 2) + pow(vrts[0].y - vrts[1].y, 2) == pow(vrts[2].x - vrts[3].x, 2) + pow(vrts[2].y - vrts[3].y, 2))
+                && (pow(vrts[1].x - vrts[2].x, 2) + pow(vrts[1].y - vrts[2].y, 2) == pow(vrts[3].x - vrts[0].x, 2) + pow(vrts[3].y - vrts[0].y, 2));
         }
 
     public:
         Quad()
         {
-            cout << "Enter X and Y for each vertex of convex quadrilateral: ";
+            cout << "Enter X and Y for each vertex of convex quadrilateral:\n";
             for (int i = 0; i < 4; i++)
             {
                 cin >> vrts[i].x;
@@ -52,7 +53,6 @@ int main()
 
     do
     {
-        
         Quad quad;
 
         cout << "\nOutput via return:    ";
