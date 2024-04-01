@@ -9,7 +9,7 @@ int main()
     do
     {
         int n;
-        cout << "Enter half of array length (greater than 0): ";
+        cout << "\nEnter half of array length (greater than 0): ";
         cin >> n;
         if (n < 1)
         {
@@ -50,12 +50,19 @@ int main()
 
         int left_bound = min(max_signed_index, last_before_n_unsigned_index);
         int right_bound = max(max_signed_index, last_before_n_unsigned_index);
+
         if (left_bound % 2 == 0) left_bound++;
-        if (right_bound < left_bound)
+
+        cout << "Left bound index: " << left_bound << endl;
+        cout << "Right bound index: " << right_bound << endl;
+
+        int sum = 0;
+        for (int i = left_bound; i <= right_bound; i += 2)
         {
-            
+            sum += b[i];
         }
 
+        cout << "Sum: " << sum;
 
         cout << "\n\nEnter \"R\" to run again, or enter any other letter to quit programm: ";
         cin >> quitOrRestart;
