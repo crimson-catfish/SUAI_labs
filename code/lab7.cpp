@@ -16,10 +16,10 @@ float traingle_area(Vertex v1, Vertex v2, Vertex v3)
     float c = sqrt(pow(v3.x - v1.x, 2) + pow(v3.y - v1.y, 2));
 
     // Calculate the semi-perimeter of the triangle
-    double s = (a + b + c) / 2;
+    float s = (a + b + c) / 2;
 
     // Calculate the area of the triangle using Heron's formula
-    double area = sqrt(s * (s - a) * (s - b) * (s - c));
+    float area = sqrt(s * (s - a) * (s - b) * (s - c));
 
     return area;
 }
@@ -32,10 +32,10 @@ void traingle_area(Vertex v1, Vertex v2, Vertex v3, float * out)
     float c = sqrt(pow(v3.x - v1.x, 2) + pow(v3.y - v1.y, 2));
 
     // Calculate the semi-perimeter of the triangle
-    double s = (a + b + c) / 2;
+    float s = (a + b + c) / 2;
 
     // Calculate the area of the triangle using Heron's formula
-    double area = sqrt(s * (s - a) * (s - b) * (s - c));
+    float area = sqrt(s * (s - a) * (s - b) * (s - c));
 
     *out = area;
 }
@@ -48,10 +48,10 @@ void traingle_area(Vertex v1, Vertex v2, Vertex v3, float & out)
     float c = sqrt(pow(v3.x - v1.x, 2) + pow(v3.y - v1.y, 2));
 
     // Calculate the semi-perimeter of the triangle
-    double s = (a + b + c) / 2;
+    float s = (a + b + c) / 2;
 
     // Calculate the area of the triangle using Heron's formula
-    double area = sqrt(s * (s - a) * (s - b) * (s - c));
+    float area = sqrt(s * (s - a) * (s - b) * (s - c));
 
     out = area;
 }

@@ -24,7 +24,7 @@ int main()
         int max_signed_index;
         for (int i = 0; i < n * 2; i++)
         {
-            if (b[i] < 0 && b[i] > max_signed)
+            if (b[i] <= 0 && b[i] > max_signed)
             {
                 max_signed = b[i];
                 max_signed_index = i;
@@ -40,7 +40,8 @@ int main()
         int last_before_n_unsigned_index = -1;
         for (int i = n - 1; i >= 0; i--)
         {
-            if (b[i] > 0) last_before_n_unsigned_index = i;
+            if (b[i] >= 0) last_before_n_unsigned_index = i;
+            break;
         }
         if (last_before_n_unsigned_index == -1)
         {
