@@ -2,6 +2,7 @@
 #include <cmath>
 using namespace std;
 
+const float precision = 0.0001;
 
 class Vertex
 {
@@ -56,6 +57,11 @@ void traingle_area(Vertex v1, Vertex v2, Vertex v3, float & out)
     out = area;
 }
 
+bool compare_floats(float f1, float f2)
+{
+    return fabs(f1 - f2) < precision;
+}
+
 int main()
 {
     char quitOrRestart = 'r';
@@ -71,8 +77,8 @@ int main()
         }
 
         cout << "\nOutput via return:    ";
-        if (traingle_area(quad[0], quad[1], quad[2]) == traingle_area(quad[0], quad[3], quad[2])
-            && traingle_area(quad[1], quad[2], quad[3]) == traingle_area(quad[1], quad[0], quad[3]))
+        if (compare_floats(traingle_area(quad[0], quad[1], quad[2]), traingle_area(quad[0], quad[3], quad[2]))
+            && compare_floats(traingle_area(quad[1], quad[2], quad[3]), traingle_area(quad[1], quad[0], quad[3])))
         { cout << "This is a parallelogram!"; }
         else cout << "This is just a quadrilateral";
 
@@ -83,7 +89,7 @@ int main()
         traingle_area(quad[0], quad[3], quad[2], &traingle_areas[1]);
         traingle_area(quad[1], quad[2], quad[3], &traingle_areas[2]);
         traingle_area(quad[1], quad[0], quad[3], &traingle_areas[3]);
-        if (traingle_areas[0] == traingle_areas[1] && traingle_areas[2] == traingle_areas[3])
+        if (compare_floats(traingle_areas[0], traingle_areas[1]) && compare_floats(traingle_areas[2], traingle_areas[3]))
         { cout << "This is a parallelogram!"; }
         else cout << "This is just a quadrilateral";
 
@@ -92,7 +98,7 @@ int main()
         traingle_area(quad[0], quad[3], quad[2], traingle_areas[1]);
         traingle_area(quad[1], quad[2], quad[3], traingle_areas[2]);
         traingle_area(quad[1], quad[0], quad[3], traingle_areas[3]);
-        if (traingle_areas[0] == traingle_areas[1] && traingle_areas[2] == traingle_areas[3])
+        if (compare_floats(traingle_areas[0], traingle_areas[1]) && compare_floats(traingle_areas[2], traingle_areas[3]))
         { cout << "This is a parallelogram!"; }
         else cout << "This is just a quadrilateral";
 
