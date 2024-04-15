@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+const int MATRIX_SIDE = 16;
+
+typedef int my_element;
+typedef my_element matrix[MATRIX_SIDE][MATRIX_SIDE];
+
 unsigned int read_width()
 {
     cout << "Enter half of matrix width: ";
@@ -9,23 +14,17 @@ unsigned int read_width()
     return 2 * n + 1;
 }
 
-int ** read_matrix(unsigned int width)
+void read_matrix(unsigned int width, matrix m)
 {
-    int ** m;
-    m = new int * [width];
     cout << "Enter matrix " << width << 'x' << width << "\n";
     for (int y = 0; y < width; y++)
     {
-        m[y] = new int [width];
         for (int x = 0; x < width; x++)
-        {
             cin >> m[y][x];
-        }
     }
-    return m;
 }
 
-int ** swap_middle_row_and_column(int ** m, unsigned int width)
+void swap_middle_row_and_column(unsigned int width, matrix m)
 {
     unsigned int buffer;
     for (int i = 0; i < width; i++)
@@ -34,17 +33,17 @@ int ** swap_middle_row_and_column(int ** m, unsigned int width)
         m[width / 2][i] = m[i][width / 2];
         m[i][width / 2] = buffer;
     }
-    return m;
 }
 
-void  print_matrix(int ** m, unsigned int width)
+void print_matrix(unsigned int width, matrix m)
 {
     for (int i = 0; i < width; i++)
     {
-        cout << endl << endl;
+        cout << endl;
         for (int j = 0; j < width; j++)
         {
-            cout << m[i][j] << '\t';
+            cout.width(3);
+            cout << m[i][j];
         }
     }
 }
@@ -56,15 +55,16 @@ int main()
     do
     {
         unsigned int width = read_width();
-        int ** m = read_matrix(width);
+        matrix m;
+        read_matrix(width, m);
 
         cout << "\n\nOriginal matrix:";
-        print_matrix(m, width);
+        print_matrix(width, m);
 
-        m = swap_middle_row_and_column(m, width);
+        swap_middle_row_and_column(width, m);
 
         cout << "\n\nSwaped matrix:";
-        print_matrix(m, width);
+        print_matrix(width, m);
 
         cout << "\n\nEnter \"R\" to run again, or enter any other letter to quit programm: ";
         cin >> quitOrRestart;
