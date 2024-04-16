@@ -26,7 +26,7 @@ void read_matrix(unsigned int width, matrix m)
 
 void swap_middle_row_and_column(unsigned int width, matrix m)
 {
-    unsigned int buffer;
+    int buffer;
     for (int i = 0; i < width; i++)
     {
         buffer = m[width / 2][i];
