@@ -5,8 +5,9 @@ const int MATRIX_SIDE = 16;
 
 typedef int my_element;
 typedef my_element matrix[MATRIX_SIDE][MATRIX_SIDE];
+typedef unsigned int matrix_width;
 
-unsigned int read_width()
+matrix_width read_width()
 {
     cout << "Enter half of matrix width: ";
     unsigned int n;
@@ -14,7 +15,7 @@ unsigned int read_width()
     return 2 * n + 1;
 }
 
-void read_matrix(unsigned int width, matrix m)
+void read_matrix(matrix_width width, matrix m)
 {
     cout << "Enter matrix " << width << 'x' << width << "\n";
     for (int y = 0; y < width; y++)
@@ -24,9 +25,9 @@ void read_matrix(unsigned int width, matrix m)
     }
 }
 
-void swap_middle_row_and_column(unsigned int width, matrix m)
+void swap_middle_row_and_column(matrix_width width, matrix m)
 {
-    int buffer;
+    my_element buffer;
     for (int i = 0; i < width; i++)
     {
         buffer = m[width / 2][i];
@@ -35,7 +36,7 @@ void swap_middle_row_and_column(unsigned int width, matrix m)
     }
 }
 
-void print_matrix(unsigned int width, matrix m)
+void print_matrix(matrix_width width, matrix m)
 {
     for (int i = 0; i < width; i++)
     {
@@ -54,7 +55,7 @@ int main()
 
     do
     {
-        unsigned int width = read_width();
+        matrix_width width = read_width();
         matrix m;
         read_matrix(width, m);
 
