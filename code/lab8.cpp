@@ -79,13 +79,11 @@ sum_of_odd_elements find_sum_of_odd_elements(my_array b, last_max_nonpositive_in
     cout << "Left bound index: " << left_bound << endl;
     cout << "Right bound index: " << right_bound << endl;
 
-    // Если левая граница четная - делаем ее нечетной
-    // Если нечетная - ничего не меняем
-    if (left_bound % 2 == 0)
+    if (left_bound % 2 == 1)
         left_bound++;
 
     sum_of_odd_elements sum = 0;
-    for (int i = left_bound; i < right_bound; i += 2)
+    for (int i = left_bound + 1; i < right_bound; i += 2)
     {
         sum += b[i];
     }
