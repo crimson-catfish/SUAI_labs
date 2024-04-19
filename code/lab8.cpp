@@ -7,6 +7,7 @@ const int ARRAY_SIZE = 32;
 typedef int my_element;
 typedef my_element my_array[ARRAY_SIZE];
 typedef int half_array_length;
+typedef int last_max_nonpositive;
 typedef int last_max_nonpositive_index;
 typedef int last_before_n_unsigned_index;
 typedef int sum_of_odd_elements;
@@ -33,7 +34,7 @@ void read_user_array(int n, my_array out)
 
 last_max_nonpositive_index find_last_max_nonpositive_index(my_array b, half_array_length half_array_length)
 {
-    int max_nonpositive;
+    last_max_nonpositive max_nonpositive;
     last_max_nonpositive_index last_max_nonpositive_index = -1;
     for (int i = 0; i < half_array_length * 2; i++)
     {
@@ -79,6 +80,7 @@ sum_of_odd_elements find_sum_of_odd_elements(my_array b, last_max_nonpositive_in
     cout << "Right bound index: " << right_bound << endl;
 
     // Если левая граница четная - делаем ее нечетной
+    // Если нечетная - ничего не меняем
     if (left_bound % 2 == 0)
         left_bound++;
 
