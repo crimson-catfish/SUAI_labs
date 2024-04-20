@@ -11,7 +11,7 @@ typedef int half_array_length;
 typedef my_element last_max_nonpositive;
 typedef int last_max_nonpositive_index;
 typedef my_element last_before_n_unsigned_index;
-typedef int sum_of_odd_elements;
+typedef my_element sum_of_odd_elements;
 
 int read_array_length()
 {
