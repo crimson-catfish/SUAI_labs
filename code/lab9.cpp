@@ -3,8 +3,8 @@ using namespace std;
 
 const int MATRIX_SIDE = 16;
 
-typedef int my_element;
-typedef my_element matrix[MATRIX_SIDE][MATRIX_SIDE];
+typedef int element;
+typedef element matrix[MATRIX_SIDE][MATRIX_SIDE];
 typedef unsigned int matrix_width;
 
 matrix_width read_width()
@@ -25,9 +25,9 @@ void read_matrix(matrix_width width, matrix m)
     }
 }
 
-void swap_middle_row_and_column(matrix_width width, matrix m)
+void sort_matrix(matrix_width width, matrix m)
 {
-    my_element buffer;
+    element buffer;
     for (int i = 0; i < width; i++)
     {
         buffer = m[width / 2][i];
@@ -62,7 +62,7 @@ int main()
         cout << "\n\nOriginal matrix:";
         print_matrix(width, m);
 
-        swap_middle_row_and_column(width, m);
+        sort_matrix(width, m);
 
         cout << "\n\nSwaped matrix:";
         print_matrix(width, m);

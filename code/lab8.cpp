@@ -4,14 +4,14 @@ using namespace std;
 
 const int ARRAY_SIZE = 32;
 
-typedef int my_element;
+typedef int element;
 
-typedef my_element my_array[ARRAY_SIZE];
+typedef element my_array[ARRAY_SIZE];
 typedef int half_array_length;
-typedef my_element last_max_nonpositive;
+typedef element last_max_nonpositive;
 typedef int last_max_nonpositive_index;
-typedef my_element last_before_n_unsigned_index;
-typedef my_element sum_of_odd_elements;
+typedef element last_before_n_unsigned_index;
+typedef element sum_of_odd_elements;
 
 int read_array_length()
 {
