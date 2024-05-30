@@ -7,6 +7,8 @@ typedef int element;
 typedef element *row;
 typedef row *matrix;
 
+const element DEFAULT_ELEMENT = 0;
+
 int read_width()
 {
     cout << "Enter half of matrix width: ";
@@ -65,12 +67,23 @@ void sort_row(row row, int start_index, int end_index)
     }
 }
 
+void clear_row(row row, int start_index, int end_index)
+{
+    for (int i = start_index; i < end_index; i++)
+    {
+        row[i] = DEFAULT_ELEMENT;
+    }
+}
+
 void sort_matrix(int width, matrix m)
 {
     for (int row_index = 0; row_index < width; row_index++)
     {
-        int start_index = abs(((int)width / 2) - row_index);
+        int start_index = ((width / 2) - row_index - 1);
+        if (start_index < 0) start_index = -1 * start_index - 1;
         sort_row(m[row_index], start_index, width - start_index);
+        clear_row(m[row_index], 0, start_index);
+        clear_row(m[row_index], width - start_index, width);
     }
 }
 
@@ -116,6 +129,7 @@ int main()
 
         cout << "\n\nSwaped matrix:";
         print_matrix(width, m);
+        delete[] m;
 
         cout << "\n\nEnter \"R\" to run again, or enter any other letter to quit programm: ";
         cin >> quitOrRestart;
