@@ -53,17 +53,22 @@ void read_matrix(int width, matrix m)
 // Сортировка по убыванию методом обмена с флагом перестановки
 void sort_row(row row, int start_index, int end_index)
 {
+    bool is_swaped;
     for (int i = start_index; i < end_index; i++)
     {
+        is_swaped = false;
         for (int j = start_index; j < end_index - 1; j++)
         {
             if (row[j] < row[j + 1])
             {
-                int b = row[j];
+                element b = row[j];
                 row[j] = row[j + 1];
                 row[j + 1] = b;
+                is_swaped = true;
             }
         }
+        if (is_swaped == false)
+            break;
     }
 }
 
@@ -80,7 +85,8 @@ void sort_matrix(int width, matrix m)
     for (int row_index = 0; row_index < width; row_index++)
     {
         int start_index = ((width / 2) - row_index - 1);
-        if (start_index < 0) start_index = -1 * start_index - 1;
+        if (start_index < 0)
+            start_index = -1 * start_index - 1;
         sort_row(m[row_index], start_index, width - start_index);
         clear_row(m[row_index], 0, start_index);
         clear_row(m[row_index], width - start_index, width);
